@@ -1,15 +1,19 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import '../../models/user.dart';
+import 'package:techka/utils/database/db_service.dart';
 
 
 class Auth {
   //An instance of FirebaseAuth
   final _firebaseAuth = FirebaseAuth.instance;
 
-/*  //Create local User from FirebaseUser and take necessary parameters
-  LocalUser _localUserFromFirebaseUser (User user){
+  //Create local User from FirebaseUser and take necessary parameters
+/*  LocalUser _localUserFromFirebaseUser (User user){
     return LocalUser(uid: user.uid);
   }*/
+
+  String? retrieveEmail () {
+    return _firebaseAuth.currentUser?.email;
+  }
 
  //stream listening the changes of User's auth
   Stream<User?> get user{
@@ -19,10 +23,14 @@ class Auth {
   // SignUp Method:
   // We send the email and password to the createUserWithEmailAndPassword() function.
   // Throwing various Exceptions to handle errors.
-  Future<void> signUp({required String email, required String password}) async {
+  Future signUp({required String email, required String password}) async {
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
+
+
+      await DatabaseService(uid: _firebaseAuth.currentUser?.uid).updateUserData('Mykola', 'Pryhodskyi');
+
     } on FirebaseAuthException catch (e) {
       if (e.code == 'week password') {
         throw Exception('The password is too week.');
@@ -35,7 +43,7 @@ class Auth {
   }
 
   //SignIn Method
-  Future<void> signIn({required String email, required String password}) async {
+  Future signIn({required String email, required String password}) async {
     try {
       await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);

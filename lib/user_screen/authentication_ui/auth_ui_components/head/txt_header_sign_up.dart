@@ -7,8 +7,8 @@ class TxtHeaderSignUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      direction: Axis.vertical,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: const [
         Text(
           "Let's get started",

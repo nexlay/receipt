@@ -1,35 +1,27 @@
 import 'package:flutter/material.dart';
+import '../../../../utils/authentication/authentication.dart';
 
-import '../../../utils/authentication/authentication.dart';
 
-class MyTextField extends StatefulWidget {
-  const MyTextField({
+class SignInTextField extends StatefulWidget {
+  const SignInTextField({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<MyTextField> createState() => _MyTextFieldState();
+  State<SignInTextField> createState() => _SignInTextFieldState();
 }
 
-class _MyTextFieldState extends State<MyTextField> {
+class _SignInTextFieldState extends State<SignInTextField> {
   final Auth _auth = Auth();
-  //Change btn for the Sign In and Sign Up screens
-  bool toggle = true;
 
-  bool _setToggle() {
-    setState(() {
-      toggle = !toggle;
-    });
-    return toggle;
-  }
 
   String email = '';
   String password = '';
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      runSpacing: 20.0,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TextFormField(
           onChanged: (val) {
@@ -42,9 +34,10 @@ class _MyTextFieldState extends State<MyTextField> {
               Icons.email,
               color: Colors.blueAccent,
             ),
-            labelText: 'Email',
+            labelText: 'Login',
           ),
         ),
+        const SizedBox(height: 20.0,),
         TextFormField(
           onChanged: (val) {
             setState(() {
@@ -60,21 +53,14 @@ class _MyTextFieldState extends State<MyTextField> {
             labelText: 'Password',
           ),
         ),
-        Center(
-          child: SizedBox(
-            width: 100,
-            height: 55,
-            child: OutlinedButton(
-              onPressed: () {
-                if(_setToggle()){
-                  _auth.signIn(email: email, password: password);
-                } else {
-                _auth.signUp(email: email, password: password);}
-              },
-              child:
-                  _setToggle() ? const Text('Sign In') : const Text('Sign Up'),
-            ),
-          ),
+        const SizedBox(height: 20.0,),
+
+        OutlinedButton(
+          onPressed: () {
+              _auth.signIn(email: email, password: password);
+          },
+          child:
+               const Text('Sign In') ,
         ),
       ],
     );
