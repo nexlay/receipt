@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../user_screen/authentication_ui/auth_ui_components/center/sign_in_field.dart';
 import '../../user_screen/authentication_ui/auth_ui_components/head/sign_in_image.dart';
 import '../../user_screen/authentication_ui/auth_ui_components/head/txt_header_sign_in.dart';
@@ -21,7 +20,7 @@ class _SignInState extends State<SignIn> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(left: 24.0, right: 24.0),
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Center(
             child: SingleChildScrollView(
               child: Column(
@@ -37,7 +36,7 @@ class _SignInState extends State<SignIn> {
                   SignInTextField(),
                   //Bottom Sign Up line
                   SizedBox(height: 45.0,),
-               BottomSignIn(),
+                  BottomSignIn(),
                 ],
               ),
             ),

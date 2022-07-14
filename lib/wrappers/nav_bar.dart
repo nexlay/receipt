@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:techka/models/nav_bar_items.dart';
+
 
 
 class StartPage extends StatefulWidget {
@@ -13,11 +13,11 @@ class StartPage extends StatefulWidget {
 }
 
 class _StartPageState extends State<StartPage> {
-  final NavBarItem navBarItem = NavBarItem();
+  NavBarItem navBarItem = NavBarItem();
 
   int _selectedIndex = 0;
 
-  int onItemTapped(int index) {
+  int _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
@@ -47,12 +47,9 @@ class _StartPageState extends State<StartPage> {
         ],
         currentIndex: _selectedIndex,
         //selectedItemColor: Colors.amber[800],
-        onTap: onItemTapped,
+        onTap: _onItemTapped,
       ),
       body: Center(child: navBarItem.getWidget(_selectedIndex),),
-      //TODO: Make floating action button visible only if one receipt was added
-      //floatingActionButton: const MyFloatingActionBtn(),
-      //bottomNavigationBar: const MyBottomNavBar(),
     );
   }
 }

@@ -1,35 +1,33 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:techka/utils/database/db_service.dart';
+
+import '../database/db_service.dart';
+
 
 
 class Auth {
   //An instance of FirebaseAuth
-  final _firebaseAuth = FirebaseAuth.instance;
+  final firebaseAuth = FirebaseAuth.instance;
 
-  //Create local User from FirebaseUser and take necessary parameters
-/*  LocalUser _localUserFromFirebaseUser (User user){
-    return LocalUser(uid: user.uid);
-  }*/
 
   String? retrieveEmail () {
-    return _firebaseAuth.currentUser?.email;
+    return firebaseAuth.currentUser?.email;
   }
 
  //stream listening the changes of User's auth
   Stream<User?> get user{
-    return _firebaseAuth.authStateChanges();
+    return firebaseAuth.authStateChanges();
   }
 
   // SignUp Method:
   // We send the email and password to the createUserWithEmailAndPassword() function.
   // Throwing various Exceptions to handle errors.
-  Future signUp({required String email, required String password}) async {
+  Future signUp({required String email, required String password, required String name, required String surname, required String imageUrl}) async {
     try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
+      await firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
 
+      await DatabaseService(uid: Auth().firebaseAuth.currentUser?.uid).insertUserData(name, surname, imageUrl);
 
-      await DatabaseService(uid: _firebaseAuth.currentUser?.uid).updateUserData('Mykola', 'Pryhodskyi');
 
     } on FirebaseAuthException catch (e) {
       if (e.code == 'week password') {
@@ -45,8 +43,10 @@ class Auth {
   //SignIn Method
   Future signIn({required String email, required String password}) async {
     try {
-      await _firebaseAuth.signInWithEmailAndPassword(
+      await firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
+
+
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         throw Exception('No user found for that email.');
@@ -56,10 +56,11 @@ class Auth {
     }
   }
 
+
   //SignOut
   Future<void> signOut() async {
     try {
-      await _firebaseAuth.signOut();
+      await firebaseAuth.signOut();
     } catch (e) {
       throw Exception(e);
     }

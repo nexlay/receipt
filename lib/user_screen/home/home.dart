@@ -1,50 +1,25 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import '../../services/receipt_source_picker.dart';
+import 'package:provider/provider.dart';
+import 'package:techka/models/receipt.dart';
+import 'package:techka/utils/database/db_service.dart';
+import '../../utils/authentication/authentication.dart';
+import 'components/receipt_list.dart';
 
-class Home extends StatefulWidget {
+class Home extends StatelessWidget {
   const Home({
     Key? key,
   }) : super(key: key);
 
-  @override
-  State<Home> createState() => _HomeState();
-}
-
-final ImgPicker imgPicker = ImgPicker();
 
 
-class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 100.0,
-        elevation: 0,
-        title: const Text('Home'),
-      ),
-      body: imgPicker.imageFile != null
-          ? Image.file(
-              File(imgPicker.imageFile!.path),
-            )
-          : GestureDetector(
-              onTap: () {
-                setState(
-                  () {
-                    imgPicker.getImage(ImageSource.gallery);
 
-                  },
-                );
-              },
-              child: const Center(
-                child: Image(
-                  image: AssetImage('assets/graphics/home_page.png'),
-                  height: 200,
-                  width: 200,
-                ),
-              ),
-            ),
+
+    return StreamProvider<List<Receipt>>.value(
+      value: DatabaseService(uid: Auth().firebaseAuth.currentUser?.uid).receipts,
+      initialData: const [],
+      child:  const ReceiptList(),
     );
   }
 }

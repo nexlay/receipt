@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:techka/user_screen/profile/profile_components/settings/theme_tile.dart';
 
-class Journal extends StatelessWidget {
-  const Journal({Key? key}) : super(key: key);
+class MySettings extends StatelessWidget {
+  const MySettings({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,19 +15,22 @@ class Journal extends StatelessWidget {
             expandedHeight: MediaQuery.of(context).size.height * 0.20,
             flexibleSpace: const FlexibleSpaceBar(
               title: Text(
-                'Journal',
+                'Settings',
                 style: TextStyle(color: Colors.black),
                 textScaleFactor: 1.2,
               ),
             ),
           ),
+          const SliverPadding(padding: EdgeInsets.symmetric(vertical: 8.0),),
           SliverList(
             delegate: SliverChildListDelegate(
               [
+             const ThemeTile(),
               ],
             ),
           ),
         ],
+
       ),
     );
   }

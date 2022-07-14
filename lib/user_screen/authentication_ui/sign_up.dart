@@ -21,7 +21,7 @@ class _SignUpState extends State<SignUp> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(left: 24.0, right: 24.0),
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Center(
             child: SingleChildScrollView(
               child: Column(

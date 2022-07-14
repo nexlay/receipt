@@ -5,12 +5,12 @@ class MyTheme{
   static ThemeData get lightTheme {
     return
       ThemeData(
+          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue, brightness: Brightness.light,),
         useMaterial3: true,
           iconTheme: const IconThemeData(
             color: Colors.blueAccent,
           ),
           textTheme: GoogleFonts.sourceSansProTextTheme(),
-          //primarySwatch: Colors.orange,
           inputDecorationTheme: InputDecorationTheme(
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.blue.shade50),
