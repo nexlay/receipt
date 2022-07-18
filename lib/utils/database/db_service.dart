@@ -12,12 +12,13 @@ class DatabaseService {
       FirebaseFirestore.instance.collection('users');
 
   //Set user data into Db
-  Future insertUserData(String name, String surname, String imageUrl) async {
+  Future insertUserData(String name, String surname, String imageUrl, int themeValue) async {
     return await usersCollection.doc(uid).set(
       {
         'name': name,
         'surname': surname,
         'imageUrl': imageUrl,
+        'themeValue': themeValue,
       },
     );
   }
@@ -53,6 +54,14 @@ class DatabaseService {
       },
     );
   }
+  //Update theme in database when user choose light or dark
+  Future updateThemeValue(int themeValue) async {
+    return await usersCollection.doc(uid).update(
+      {
+        'themeValue': themeValue,
+      },
+    );
+  }
 
   //User from snapshot
   LocalUser _userFromSnapshot(DocumentSnapshot documentSnapshot) {
@@ -65,7 +74,10 @@ class DatabaseService {
             : '',
         imageUrl: documentSnapshot.data().toString().contains('imageUrl')
             ? documentSnapshot.get('imageUrl')
-            : '');
+            : '',
+    themeValue: documentSnapshot.data().toString().contains('themeValue')
+        ? documentSnapshot.get('themeValue')
+        : 0);
   }
 
   //Receipt from snapshot

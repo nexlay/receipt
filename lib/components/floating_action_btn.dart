@@ -19,7 +19,7 @@ class _MyFloatingActionBtnState extends State<MyFloatingActionBtn> {
   Widget build(BuildContext context) {
     return FloatingActionButton.extended(
       onPressed: () async {
-        receiptFile = await mediaService.getImage(ImageSource.gallery, 2);
+        receiptFile = await mediaService.getImage(ImageSource.camera, 2);
         receiptInfo = await mediaService.getRecognisedText();
         setState(
               () {

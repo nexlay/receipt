@@ -20,6 +20,7 @@ class _SignUpTextFieldState extends State<SignUpTextField> {
   String name = '';
   String surname = '';
   String imageUrl = '';
+  int themeValue = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +36,7 @@ class _SignUpTextFieldState extends State<SignUpTextField> {
           decoration: const InputDecoration(
             prefixIcon: Icon(
               Icons.drive_file_rename_outline_sharp,
-              color: Colors.blueAccent,
+
             ),
             labelText: 'Name',
           ),
@@ -51,7 +52,7 @@ class _SignUpTextFieldState extends State<SignUpTextField> {
           decoration: const InputDecoration(
             prefixIcon: Icon(
               Icons.account_circle,
-              color: Colors.blueAccent,
+
             ),
             labelText: 'Surname',
           ),
@@ -66,7 +67,7 @@ class _SignUpTextFieldState extends State<SignUpTextField> {
           decoration: const InputDecoration(
             prefixIcon: Icon(
               Icons.email,
-              color: Colors.blueAccent,
+
             ),
             labelText: 'Email',
           ),
@@ -82,7 +83,7 @@ class _SignUpTextFieldState extends State<SignUpTextField> {
           decoration: const InputDecoration(
             prefixIcon: Icon(
               Icons.password,
-              color: Colors.blueAccent,
+
             ),
             labelText: 'Password',
           ),
@@ -92,7 +93,7 @@ class _SignUpTextFieldState extends State<SignUpTextField> {
         const SizedBox(height: 20.0,),
         OutlinedButton(
           onPressed: () {
-            _auth.signUp(email: email, password: password, name: name, surname: surname, imageUrl: imageUrl);
+            _auth.signUp(email: email, password: password, name: name, surname: surname, imageUrl: imageUrl, themeValue: themeValue);
           },
           child:
           const Text('Sign Up'),

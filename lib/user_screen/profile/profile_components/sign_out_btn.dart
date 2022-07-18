@@ -9,8 +9,8 @@ class SignOutBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: OutlinedButton(
+    return ListTile(
+      leading: OutlinedButton(
         onPressed: () {
           _auth.signOut();
         },
@@ -18,5 +18,7 @@ class SignOutBtn extends StatelessWidget {
         const Text('Sign Out'),
       ),
     );
+
+
   }
 }

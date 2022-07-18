@@ -11,12 +11,12 @@ class MySettings extends StatelessWidget {
         slivers: [
           SliverAppBar(
             elevation: 0.0,
+            backgroundColor: Colors.transparent,
             pinned: true,
             expandedHeight: MediaQuery.of(context).size.height * 0.20,
             flexibleSpace: const FlexibleSpaceBar(
               title: Text(
                 'Settings',
-                style: TextStyle(color: Colors.black),
                 textScaleFactor: 1.2,
               ),
             ),

@@ -7,7 +7,8 @@ class ThemeTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: const Text('Theme'),
+      title: const Text('Appearance'),
+      subtitle: const Text('Dark theme'),
       onTap: (){
         Navigator.push(context, MaterialPageRoute(builder: (context) => const ThemeToggle()));
       },

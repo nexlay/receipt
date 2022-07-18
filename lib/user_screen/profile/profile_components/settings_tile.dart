@@ -8,8 +8,9 @@ class SettingsTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       title: const Text('Settings'),
+      subtitle: const Text('Theme, About'),
       onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context) => const MySettings()));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => const MySettings(),),);
       },
     );
   }

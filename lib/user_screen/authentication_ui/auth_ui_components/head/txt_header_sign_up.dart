@@ -12,9 +12,9 @@ class TxtHeaderSignUp extends StatelessWidget {
       children: const [
         Text(
           "Let's get started",
-          style: TextStyle(fontSize: 32.0, fontWeight: FontWeight.bold),
+
         ),
-        Text('Create an account', style: TextStyle(color: Colors.grey),),
+        Text('Create an account',),
       ],
     );
   }

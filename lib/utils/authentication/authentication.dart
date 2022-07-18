@@ -21,12 +21,12 @@ class Auth {
   // SignUp Method:
   // We send the email and password to the createUserWithEmailAndPassword() function.
   // Throwing various Exceptions to handle errors.
-  Future signUp({required String email, required String password, required String name, required String surname, required String imageUrl}) async {
+  Future signUp({required String email, required String password, required String name, required String surname, required String imageUrl, required int themeValue}) async {
     try {
       await firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
 
-      await DatabaseService(uid: Auth().firebaseAuth.currentUser?.uid).insertUserData(name, surname, imageUrl);
+      await DatabaseService(uid: Auth().firebaseAuth.currentUser?.uid).insertUserData(name, surname, imageUrl, themeValue);
 
 
     } on FirebaseAuthException catch (e) {

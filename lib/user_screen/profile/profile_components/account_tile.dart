@@ -22,61 +22,53 @@ class _AccountState extends State<Account> {
   @override
   Widget build(BuildContext context) {
     final localUser = Provider.of<LocalUser>(context);
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Hello ${localUser.name}', style: const TextStyle(fontSize: 20.0,),),
-            Text(
-              Auth().retrieveEmail().toString(),
-            ),
-          ],
-        ),
-        localUser.imageUrl != ''
-            ? Material(
-                elevation: 4.0,
-                shape: const CircleBorder(),
-                clipBehavior: Clip.antiAlias,
-                color: Colors.transparent,
-                child: Ink.image(
-                  image: NetworkImage(localUser.imageUrl),
-                  fit: BoxFit.cover,
-                  width: 80.0,
-                  height: 80.0,
-                  child: InkWell(
-                    onTap: () async {
-                      imageFile = await imgPicker.getImage(ImageSource.gallery, 1);
-                      setState(
-                        () {
-                          Storage(
-                                  uid: Auth().firebaseAuth.currentUser?.uid,
-                                  imageName: imageFile!.name)
-                              .uploadProfileImage(imageFile!.path);
-                        },
-                      );
-                    },
-                  ),
-                ),
-              )
-            : IconButton(
-          iconSize: 60.0,
-                icon: const Icon(Icons.account_circle,
-                    color: Colors.grey,),
-                onPressed: () async {
-                  imageFile = await imgPicker.getImage(ImageSource.gallery, 1);
-                  setState(
-                        () {
-                      Storage(
-                          uid: Auth().firebaseAuth.currentUser?.uid,
-                          imageName: imageFile!.name)
-                          .uploadProfileImage(imageFile!.path);
-                    },
-                  );
+    return ListTile(
+      title: Text('Hello ${localUser.name}'),
+      subtitle: Text(
+        Auth().retrieveEmail().toString(),
+      ),
+      trailing: localUser.imageUrl != ''
+          ? Material(
+        elevation: 4.0,
+        shape: const CircleBorder(),
+        clipBehavior: Clip.antiAlias,
+        color: Colors.transparent,
+        child: Ink.image(
+          image: NetworkImage(localUser.imageUrl),
+          fit: BoxFit.cover,
+          width: 80.0,
+          height: 80.0,
+          child: InkWell(
+            onTap: () async {
+              imageFile = await imgPicker.getImage(ImageSource.gallery, 1);
+              setState(
+                    () {
+                  Storage(
+                      uid: Auth().firebaseAuth.currentUser?.uid,
+                      imageName: imageFile!.name)
+                      .uploadProfileImage(imageFile!.path);
                 },
-              ),
-      ],
+              );
+            },
+          ),
+        ),
+      )
+          : IconButton(
+        iconSize: 60.0,
+        icon: const Icon(Icons.account_circle,
+          color: Colors.grey,),
+        onPressed: () async {
+          imageFile = await imgPicker.getImage(ImageSource.gallery, 1);
+          setState(
+                () {
+              Storage(
+                  uid: Auth().firebaseAuth.currentUser?.uid,
+                  imageName: imageFile!.name)
+                  .uploadProfileImage(imageFile!.path);
+            },
+          );
+        },
+      ),
     );
   }
 }

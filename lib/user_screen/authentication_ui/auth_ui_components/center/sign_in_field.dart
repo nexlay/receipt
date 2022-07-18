@@ -32,7 +32,7 @@ class _SignInTextFieldState extends State<SignInTextField> {
           decoration: const InputDecoration(
             prefixIcon: Icon(
               Icons.email,
-              color: Colors.blueAccent,
+
             ),
             labelText: 'Login',
           ),
@@ -48,7 +48,7 @@ class _SignInTextFieldState extends State<SignInTextField> {
           decoration: const InputDecoration(
             prefixIcon: Icon(
               Icons.password,
-              color: Colors.blueAccent,
+
             ),
             labelText: 'Password',
           ),

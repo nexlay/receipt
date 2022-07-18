@@ -5,7 +5,7 @@ import '../user_screen/home/home.dart';
 
 class NavBarItem {
   final List<Widget> _screenOption = [
-    const Home(),
+    const HomeReceiptList(),
     const Journal(),
     const Profile(),
   ];
