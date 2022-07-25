@@ -1,35 +1,22 @@
 import 'package:image_picker/image_picker.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
 
+
 class MediaService {
   XFile? imageFile;
-  List<String> receiptInfo = [];
-  List<String> result = [];
 
 
-  Future<XFile?> getImage(ImageSource source, int quality) async {
+
+
+  Future<XFile?> getImage(ImageSource source) async {
     try {
-      if (quality == 1) {
         final pickedImage = await ImagePicker().pickImage(
           source: source,
-          imageQuality: 65,
-          maxHeight: 480,
-          maxWidth: 640,
+          imageQuality: 85,
         );
         if (pickedImage != null) {
-          imageFile = pickedImage;
-        }
-      } else {
-        final pickedImage = await ImagePicker().pickImage(
-          source: source,
-          imageQuality: 75,
-          maxHeight: 1920,
-          maxWidth: 1080,
-        );
-        if (pickedImage != null) {
-          imageFile = pickedImage;
-        }
-      }
+          imageFile = pickedImage;}
+
     } catch (e) {
       imageFile = null;
     }
@@ -38,45 +25,57 @@ class MediaService {
 
   Future<List<String>> getRecognisedText() async {
     List<String> words = [];
+    List<String> receipt = [];
+
+    final regex = RegExp(r'^[0-9]+\,+[0-9]+$');
+    final dateRegex = RegExp(r'^[0-9]+\-+[0-9]+\-+[0-9]+$');
+
     try {
       final inputImage = InputImage.fromFilePath(imageFile!.path);
       final textDetector = GoogleMlKit.vision.textRecognizer();
       final RecognizedText recognisedText =
           await textDetector.processImage(inputImage);
-      await textDetector.close();
+     await textDetector.close();
+
       for (TextBlock block in recognisedText.blocks) {
         for (TextLine lines in block.lines) {
           for (TextElement word in lines.elements) {
             words.add(word.text);
-            final regex = RegExp(r'^[0-9]+\,+[0-9]+$');
             List<RegExpMatch> match = regex.allMatches(word.text).toList();
+            List<RegExpMatch> matchDate = dateRegex.allMatches(word.text).toList();
             for (var matches in match) {
-              result.add(
-                word.text.substring(matches.start, matches.end),
+              receipt.add(word.text.substring(matches.start, matches.end)
               );
+            }
+            for(var dateMatches in matchDate) {
             }
           }
         }
       }
-      for (int i = 0; i < result.length - 1; i++) {
-        if (result[i + 1] == result[i]) {
-          receiptInfo.add(result[i]);
-        }
-      }
-      for (int i = 0; i < receiptInfo.length - 1; i++) {
-        if (result[i + 1] == result[i]) {
-          receiptInfo.add(result[i]);
-        }
-      }
-      if(receiptInfo.length == 1){
-        receiptInfo = [words[0], receiptInfo[0]];
-      } else {
-        receiptInfo[0] = words[0];
-      }
+
 
     } catch (e) {
       "Error occurred while scanning";
     }
-    return receiptInfo.toSet().toList();
+
+    return getDataFromText(receipt, words);
   }
+
+  List<String> getDataFromText (List<String> data, List<String> words) {
+    List<String> receipt = [];
+    data.sort();
+    for (int i = 0; i < data.length - 1; i++) {
+      if (data[i + 1] == data[i]) {
+        receipt.add(data[i]);
+      }
+    }
+
+    if(receipt.length > 1){
+    receipt = [words[0], receipt[1]];}
+
+    else {receipt = [words[0], receipt[0]];}
+
+    return receipt;
+  }
+
 }

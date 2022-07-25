@@ -25,7 +25,7 @@ class _ReceiptDetailsState extends State<ReceiptDetails> {
                       uid: Auth().firebaseAuth.currentUser?.uid,
                       imageName: receipt.name)
                   .deleteReceipt();
-              Future.delayed(const Duration(seconds: 2), () {
+              Future.delayed(const Duration(seconds: 1), () {
                 Navigator.pop(context);
               });
             },
@@ -40,7 +40,6 @@ class _ReceiptDetailsState extends State<ReceiptDetails> {
       body:receipt.url != '' ? Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-
              InteractiveViewer(
                   child: Container(
                     width: 600,

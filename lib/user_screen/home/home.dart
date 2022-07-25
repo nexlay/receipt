@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:techka/components/custom_scroll_view.dart';
 import 'package:techka/models/receipt.dart';
 import 'package:techka/user_screen/home/components/receipt_picker.dart';
 import 'package:techka/user_screen/home/components/receipt_card.dart';
@@ -10,50 +11,37 @@ class HomeReceiptList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final receipt = Provider.of<List<Receipt>>(context);
+    final receipts = Provider.of<List<Receipt>>(context);
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       floatingActionButton: AnimatedOpacity(
         duration: const Duration(milliseconds: 500),
-        opacity: receipt.isNotEmpty ? 1.0 : 0.0,
+        opacity: receipts.isNotEmpty ? 1.0 : 0.0,
         child: const MyFloatingActionBtn(),
       ),
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            elevation: 0.0,
-            backgroundColor: Colors.transparent,
-            pinned: true,
-            expandedHeight: MediaQuery.of(context).size.height * 0.20,
-            flexibleSpace: const FlexibleSpaceBar(
-              title: Text(
-                'Home',
-                textScaleFactor: 1.2,
-              ),
-            ),
-          ),
-          const SliverPadding(padding: EdgeInsets.symmetric(vertical: 8.0),),
-          receipt.isNotEmpty
-              ? SliverGrid(
-            delegate: SliverChildBuilderDelegate(
+      body: TechkaCustomScrollView(
+        title: 'Home',
+        childWidget: receipts.isNotEmpty
+            ? SliverGrid(
+                delegate: SliverChildBuilderDelegate(
                   (context, int index) {
-                return ReceiptCard(url: receipt[index].url, receiptName: receipt[index].name,);
-              },
-              childCount: receipt.length,
-            ),
-            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 300.0,
-              mainAxisExtent: 300.0,
-              mainAxisSpacing: 10.0,
-              crossAxisSpacing: 10.0,
-              childAspectRatio: 1.0,
-            ),
-          )
-              : const SliverFillRemaining(
-            child:
-            ReceiptPicker(),
-          ),
-          const SliverPadding(padding: EdgeInsets.symmetric(vertical: 50.0),),
-        ],
+                    return ReceiptCard(
+                      index: index,
+                    );
+                  },
+                  childCount: receipts.length,
+                ),
+                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 200.0,
+                  mainAxisExtent: 200.0,
+                  mainAxisSpacing: 5.0,
+                  crossAxisSpacing: 5.0,
+                  childAspectRatio: 2.0,
+                ),
+              )
+            : const SliverFillRemaining(
+                child: ReceiptPicker(),
+              ),
       ),
     );
   }

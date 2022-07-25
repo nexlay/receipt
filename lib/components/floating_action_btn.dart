@@ -19,17 +19,27 @@ class _MyFloatingActionBtnState extends State<MyFloatingActionBtn> {
   Widget build(BuildContext context) {
     return FloatingActionButton.extended(
       onPressed: () async {
-        receiptFile = await mediaService.getImage(ImageSource.camera, 2);
-        receiptInfo = await mediaService.getRecognisedText();
+        receiptFile = await mediaService.getImage(ImageSource.gallery);
+        if (receiptFile != null) {
+          receiptInfo = await mediaService.getRecognisedText();
+        }
         setState(
-              () {
-            Storage(uid: Auth().firebaseAuth.currentUser?.uid, imageName: receiptFile?.name).uploadReceipt(receiptFile!.path, receiptInfo[0], receiptInfo[1]);
+          () {
+            if (receiptFile != null && receiptInfo.isNotEmpty) {
+              Storage(
+                      uid: Auth().firebaseAuth.currentUser?.uid,
+                      imageName: receiptFile?.name)
+                  .uploadReceipt(
+                      receiptFile!.path, receiptInfo[0], receiptInfo[1]);
+            }
           },
         );
       },
       tooltip: 'Click to add new sales receipt',
-      label: const Text('Add new sales receipt'),
-      icon: const Icon(Icons.camera_alt_rounded,),
+      label: const Text('New receipt'),
+      icon: const Icon(
+        Icons.add,
+      ),
     );
   }
 }

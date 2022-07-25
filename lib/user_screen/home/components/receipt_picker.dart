@@ -25,7 +25,7 @@ class _GestureState extends State<ReceiptPicker> {
         ? const TechkaProgressIndicator()
         : InkWell(
       onTap: () async{
-        receiptFile = await mediaService.getImage(ImageSource.camera, 2);
+        receiptFile = await mediaService.getImage(ImageSource.gallery);
         receiptInfo = await mediaService.getRecognisedText();
         setState(
               () {

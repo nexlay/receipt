@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:techka/components/custom_scroll_view.dart';
 import 'package:techka/user_screen/profile/profile_components/settings/theme_tile.dart';
 
 class MySettings extends StatelessWidget {
@@ -7,30 +8,15 @@ class MySettings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            elevation: 0.0,
-            backgroundColor: Colors.transparent,
-            pinned: true,
-            expandedHeight: MediaQuery.of(context).size.height * 0.20,
-            flexibleSpace: const FlexibleSpaceBar(
-              title: Text(
-                'Settings',
-                textScaleFactor: 1.2,
-              ),
-            ),
+      body: TechkaCustomScrollView(
+        title: 'Settings',
+        childWidget: SliverList(
+          delegate: SliverChildListDelegate(
+            [
+              const ThemeTile(),
+            ],
           ),
-          const SliverPadding(padding: EdgeInsets.symmetric(vertical: 8.0),),
-          SliverList(
-            delegate: SliverChildListDelegate(
-              [
-             const ThemeTile(),
-              ],
-            ),
-          ),
-        ],
-
+        ),
       ),
     );
   }

@@ -17,7 +17,7 @@ class _ThemeActionState extends State<ThemeAction> {
   List<ThemeChip> chip = [
     ThemeChip('Light', const Icon(Icons.light_mode, color: Colors.yellow,)),
     ThemeChip('Dark', const Icon(Icons.dark_mode, color: Colors.blueGrey,)),
-    ThemeChip('Auto', const Icon(Icons.auto_awesome, color: Colors.white,)),
+    ThemeChip('Auto', const Icon(Icons.auto_awesome, color: Colors.blue,)),
   ];
 
   @override
@@ -25,56 +25,54 @@ class _ThemeActionState extends State<ThemeAction> {
     final theme = Provider.of<LocalUser>(context);
     int? value = theme.themeValue;
 
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Center(
-            child: AnimatedContainer(
-              width: MediaQuery.of(context).size.width,
-              height: value == 0 ? MediaQuery.of(context).size.height*0.35 : value == 1 ? 200 : value == 2 ? MediaQuery.of(context).size.height*0.35 : MediaQuery.of(context).size.height*0.35,
-              duration: const Duration(seconds: 2),
-              curve: Curves.elasticInOut,
-              alignment: value == 0 ? Alignment.center : value == 1 ? Alignment.topRight : value == 2 ? Alignment.topLeft : Alignment.center,
-              child: AnimatedCrossFade(
-                firstChild:  const Icon(Icons.light_mode, size: 150.0, color: Colors.yellow,),
-                secondChild: value == 2 ? const Icon(Icons.auto_awesome, size: 150.0,) : const Icon(Icons.dark_mode, size: 150.0, color: Colors.white38,),
-                crossFadeState: value == 0 ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-                duration: const Duration(seconds: 1),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Center(
+              child: AnimatedContainer(
+                width: MediaQuery.of(context).size.width,
+                height: value == 0 ? MediaQuery.of(context).size.height*0.35 : value == 1 ? 200 : value == 2 ? MediaQuery.of(context).size.height*0.35 : MediaQuery.of(context).size.height*0.35,
+                duration: const Duration(seconds: 2),
+                curve: Curves.elasticInOut,
+                alignment: value == 0 ? Alignment.center : value == 1 ? Alignment.topRight : value == 2 ? Alignment.topLeft : Alignment.center,
+                child: AnimatedCrossFade(
+                  firstChild:  const Icon(Icons.light_mode, size: 150.0, color: Colors.yellow,),
+                  secondChild: value == 2 ? const Icon(Icons.auto_awesome, size: 150.0,) : const Icon(Icons.dark_mode, size: 150.0, color: Colors.white38,),
+                  crossFadeState: value == 0 ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+                  duration: const Duration(seconds: 1),
+                ),
               ),
             ),
-          ),
 
-          Column(
-            children:
-            List<Widget>.generate(
-              3,
-              (int index) {
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 20.0),
-                  child: ChoiceChip(
-                    avatar: chip[index].icon,
-                    label: Text(chip[index].label),
-                    selectedColor: Colors.blue.shade200,
-                    labelPadding: const EdgeInsets.all(8.0),
-                    labelStyle: const TextStyle(color: Colors.black),
-                    selected: value == index,
-                    onSelected: (bool selected) {
-                      setState(() {
-                        value = index;
-                        DatabaseService(uid: Auth().firebaseAuth.currentUser?.uid).updateThemeValue(value!);
-                      });
-                    },
-                  ),
-                );
-              },
-            ).toList(),
-          ),
-          const SizedBox(height: 45.0,),
-          const Text('Dark theme uses a black background to help keep your battery alive longer and cut the glare from your screen significantly for comfortable viewing. ',),
-        ],
+            Column(
+              children:
+              List<Widget>.generate(
+                3,
+                (int index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 20.0),
+                    child: ChoiceChip(
+                      avatar: chip[index].icon,
+                      label: Text(chip[index].label),
+                      selected: value == index,
+                      onSelected: (bool selected) {
+                        setState(() {
+                          value = index;
+                          DatabaseService(uid: Auth().firebaseAuth.currentUser?.uid).updateThemeValue(value!);
+                        });
+                      },
+                    ),
+                  );
+                },
+              ).toList(),
+            ),
+            const SizedBox(height: 45.0,),
+            const Text('Dark theme uses a black background to help keep your battery alive longer and cut the glare from your screen significantly for comfortable viewing. ',),
+          ],
+        ),
       ),
     );
   }

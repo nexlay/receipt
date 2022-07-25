@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:techka/components/custom_scroll_view.dart';
 
 class Journal extends StatelessWidget {
   const Journal({Key? key}) : super(key: key);
@@ -6,28 +7,12 @@ class Journal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            elevation: 0.0,
-            backgroundColor: Colors.transparent,
-            pinned: true,
-            expandedHeight: MediaQuery.of(context).size.height * 0.20,
-            flexibleSpace: const FlexibleSpaceBar(
-              title: Text(
-                'Journal',
-                textScaleFactor: 1.2,
-              ),
-            ),
-          ),
-          SliverList(
-            delegate: SliverChildListDelegate(
-              [
-              ],
-            ),
-          ),
-        ],
-      ),
+      body: TechkaCustomScrollView(title: 'Journal', childWidget: SliverList(
+        delegate: SliverChildListDelegate(
+          [
+          ],
+        ),
+      ),),
     );
   }
 }

@@ -40,7 +40,7 @@ class _AccountState extends State<Account> {
           height: 80.0,
           child: InkWell(
             onTap: () async {
-              imageFile = await imgPicker.getImage(ImageSource.gallery, 1);
+              imageFile = await imgPicker.getImage(ImageSource.gallery);
               setState(
                     () {
                   Storage(
@@ -58,7 +58,7 @@ class _AccountState extends State<Account> {
         icon: const Icon(Icons.account_circle,
           color: Colors.grey,),
         onPressed: () async {
-          imageFile = await imgPicker.getImage(ImageSource.gallery, 1);
+          imageFile = await imgPicker.getImage(ImageSource.gallery);
           setState(
                 () {
               Storage(
