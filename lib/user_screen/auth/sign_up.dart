@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../user_screen/authentication_ui/auth_ui_components/head/sign_up_image.dart';
-import '../../user_screen/authentication_ui/auth_ui_components/head/txt_header_sign_up.dart';
 import 'auth_ui_components/bottom/bottom_sign_up.dart';
 import 'auth_ui_components/center/sign_up_field.dart';
-
+import 'auth_ui_components/head/brand_image.dart';
+import 'auth_ui_components/head/txt_header_sign_up.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -13,30 +12,29 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar:AppBar(
+        toolbarHeight: MediaQuery.of(context).size.height * 0.20,
+        automaticallyImplyLeading: false,
+        title: //Head Image line
+        const BrandImage(),
+        //centerTitle: true,
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Center(
             child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: Wrap(
+                runSpacing: 20.0,
                 children: const [
-                  //Head Image line
-                  ImageSignUp(),
-                  SizedBox(height: 45.0,),
                   //Head text line
                   TxtHeaderSignUp(),
-                  SizedBox(height: 20.0,),
                   //Center buttons and fields line
                   SignUpTextField(),
                   //Bottom Sign In line
-                  SizedBox(height: 45.0,),
                  BottomSignUp(),
                 ],
               ),

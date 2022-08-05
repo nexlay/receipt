@@ -24,8 +24,8 @@ class _SignUpTextFieldState extends State<SignUpTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Wrap(
+     runSpacing: 20.0,
       children: [
         TextFormField(
           onChanged: (val) {
@@ -41,23 +41,19 @@ class _SignUpTextFieldState extends State<SignUpTextField> {
             labelText: 'Name',
           ),
         ),
-        const SizedBox(height: 20.0,),
         TextFormField(
           onChanged: (val) {
             setState(() {
               surname = val;
             });
           },
-
           decoration: const InputDecoration(
             prefixIcon: Icon(
               Icons.account_circle,
-
             ),
             labelText: 'Surname',
           ),
         ),
-        const SizedBox(height: 20.0,),
         TextFormField(
           onChanged: (val) {
             setState(() {
@@ -72,7 +68,6 @@ class _SignUpTextFieldState extends State<SignUpTextField> {
             labelText: 'Email',
           ),
         ),
-        const SizedBox(height: 20.0,),
         TextFormField(
           onChanged: (val) {
             setState(() {
@@ -83,20 +78,18 @@ class _SignUpTextFieldState extends State<SignUpTextField> {
           decoration: const InputDecoration(
             prefixIcon: Icon(
               Icons.password,
-
             ),
             labelText: 'Password',
           ),
         ),
-
-
-        const SizedBox(height: 20.0,),
-        OutlinedButton(
-          onPressed: () {
-            _auth.signUp(email: email, password: password, name: name, surname: surname, imageUrl: imageUrl, themeValue: themeValue);
-          },
-          child:
-          const Text('Sign Up'),
+        ListTile(
+          trailing: OutlinedButton(
+            onPressed: () {
+              _auth.signUp(email: email, password: password, name: name, surname: surname, imageUrl: imageUrl, themeValue: themeValue);
+            },
+            child:
+            const Text('Sign Up'),
+          ),
         ),
       ],
     );

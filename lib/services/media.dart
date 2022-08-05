@@ -5,9 +5,6 @@ import 'package:google_ml_kit/google_ml_kit.dart';
 class MediaService {
   XFile? imageFile;
 
-
-
-
   Future<XFile?> getImage(ImageSource source) async {
     try {
         final pickedImage = await ImagePicker().pickImage(
@@ -16,7 +13,6 @@ class MediaService {
         );
         if (pickedImage != null) {
           imageFile = pickedImage;}
-
     } catch (e) {
       imageFile = null;
     }
@@ -52,12 +48,9 @@ class MediaService {
           }
         }
       }
-
-
     } catch (e) {
       "Error occurred while scanning";
     }
-
     return getDataFromText(receipt, words);
   }
 
@@ -69,12 +62,9 @@ class MediaService {
         receipt.add(data[i]);
       }
     }
-
     if(receipt.length > 1){
     receipt = [words[0], receipt[1]];}
-
     else {receipt = [words[0], receipt[0]];}
-
     return receipt;
   }
 

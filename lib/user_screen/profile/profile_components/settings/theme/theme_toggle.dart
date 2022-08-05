@@ -7,7 +7,7 @@ class ThemeToggle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: TechkaCustomScrollView(
+      body: ReceiptCustomScrollView(
         title: 'Theme',
         childWidget: SliverFillRemaining(
           child: ThemeAction(),

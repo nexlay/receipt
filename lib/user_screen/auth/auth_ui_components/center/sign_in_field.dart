@@ -20,8 +20,8 @@ class _SignInTextFieldState extends State<SignInTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Wrap(
+      runSpacing: 20.0,
       children: [
         TextFormField(
           onChanged: (val) {
@@ -32,12 +32,10 @@ class _SignInTextFieldState extends State<SignInTextField> {
           decoration: const InputDecoration(
             prefixIcon: Icon(
               Icons.email,
-
             ),
             labelText: 'Login',
           ),
         ),
-        const SizedBox(height: 20.0,),
         TextFormField(
           onChanged: (val) {
             setState(() {
@@ -48,19 +46,21 @@ class _SignInTextFieldState extends State<SignInTextField> {
           decoration: const InputDecoration(
             prefixIcon: Icon(
               Icons.password,
-
             ),
             labelText: 'Password',
           ),
         ),
-        const SizedBox(height: 20.0,),
-
-        OutlinedButton(
-          onPressed: () {
-              _auth.signIn(email: email, password: password);
-          },
-          child:
-               const Text('Sign In') ,
+        TextButton(onPressed: (){}, child: Text('Forgot your password?'),),
+        ListTile(
+          trailing: OutlinedButton(
+            onPressed: () {
+              setState(() {
+                _auth.signIn(email: email, password: password);
+              });
+            },
+            child:
+                 const Text('Sign In'),
+          ),
         ),
       ],
     );

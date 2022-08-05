@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:techka/components/confirmation_alert_dialog.dart';
 import 'package:techka/components/progress_indicator.dart';
 import '../../../models/receipt.dart';
-import '../../../utils/authentication/authentication.dart';
-import '../../../utils/database/storage.dart';
+
 
 class ReceiptDetails extends StatefulWidget {
   const ReceiptDetails({Key? key}) : super(key: key);
@@ -20,14 +20,9 @@ class _ReceiptDetailsState extends State<ReceiptDetails> {
       appBar: AppBar(
         actions: [
           IconButton(
-            onPressed: () {
-              Storage(
-                      uid: Auth().firebaseAuth.currentUser?.uid,
-                      imageName: receipt.name)
-                  .deleteReceipt();
-              Future.delayed(const Duration(seconds: 1), () {
-                Navigator.pop(context);
-              });
+            onPressed: () async {
+             await ConfirmAlertDialog().asyncConfirmDialog(context, receipt.name);
+             Future.delayed(Duration(seconds: 2)).whenComplete(() => Navigator.of(context).pop(),);
             },
             icon: const Icon(Icons.delete),
           ),
@@ -37,16 +32,19 @@ class _ReceiptDetailsState extends State<ReceiptDetails> {
           ),
         ],
       ),
-      body:receipt.url != '' ? Column(
+      body: receipt.url.isNotEmpty ? Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
              InteractiveViewer(
-                  child: Container(
-                    width: 600,
-                    height: 600,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: NetworkImage(receipt.url), fit: BoxFit.fill),
+                  child: Hero(
+                    tag: '${receipt.name}',
+                    child: Container(
+                      width: 600,
+                      height: 600,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: NetworkImage(receipt.url), fit: BoxFit.fill),
+                      ),
                     ),
                   ),
                 ),
@@ -70,7 +68,7 @@ class _ReceiptDetailsState extends State<ReceiptDetails> {
             ),
           ),
         ],
-      ) :  const TechkaProgressIndicator(),
+      ) :  const ReceiptProgressIndicator(),
     );
   }
 }

@@ -4,6 +4,8 @@ import 'package:techka/services/media.dart';
 import '../utils/authentication/authentication.dart';
 import '../utils/database/storage.dart';
 
+enum ConfirmAction { Upload, Scan }
+
 class MyFloatingActionBtn extends StatefulWidget {
   const MyFloatingActionBtn({Key? key}) : super(key: key);
 
@@ -18,20 +20,69 @@ class _MyFloatingActionBtnState extends State<MyFloatingActionBtn> {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton.extended(
-      onPressed: () async {
-        receiptFile = await mediaService.getImage(ImageSource.gallery);
-        if (receiptFile != null) {
-          receiptInfo = await mediaService.getRecognisedText();
-        }
-        setState(
-          () {
-            if (receiptFile != null && receiptInfo.isNotEmpty) {
-              Storage(
-                      uid: Auth().firebaseAuth.currentUser?.uid,
+      onPressed: () {
+        showModalBottomSheet(
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(topRight: Radius.circular(16.0), topLeft: Radius.circular(16.0),),
+          ),
+          context: context,
+          builder: (_) {
+            return Container(
+              height: MediaQuery.of(context).size.height * 0.20,
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  OutlinedButton.icon(
+                    onPressed: () async {
+                      receiptFile =
+                          await mediaService.getImage(ImageSource.gallery);
+                      receiptInfo = await mediaService.getRecognisedText();
+            if(receiptFile != null) {
+              setState(
+                    () {
+                  Storage(
+                      uid: Auth().retrieveCurrentUserId(),
                       imageName: receiptFile?.name)
-                  .uploadReceipt(
-                      receiptFile!.path, receiptInfo[0], receiptInfo[1]);
+                      .uploadReceipt(receiptFile!.path, receiptInfo[0],
+                      receiptInfo[1]);
+                },
+              );
             }
+                      Navigator.of(context).pop(ConfirmAction.Upload);
+                    },
+                    icon: const Icon(
+                      Icons.file_upload_outlined,
+                    ),
+                    label: const Text('Upload'),
+                  ),
+                  OutlinedButton.icon(
+                    onPressed: () async {
+                      receiptFile =
+                          await mediaService.getImage(ImageSource.camera);
+                      receiptInfo = await mediaService.getRecognisedText();
+                      if(receiptFile != null) {
+                        setState(
+                              () {
+                            Storage(
+                                uid: Auth().retrieveCurrentUserId(),
+                                imageName: receiptFile?.name)
+                                .uploadReceipt(
+                                receiptFile!.path, receiptInfo[0],
+                                receiptInfo[1]);
+                          },
+                        );
+                      }
+                      Navigator.of(context).pop(ConfirmAction.Scan);
+                    },
+                    icon: const Icon(
+                      Icons.camera_alt_outlined,
+                    ),
+                    label: const Text(' Scan  '),
+                  ),
+                ],
+              ),
+            );
           },
         );
       },

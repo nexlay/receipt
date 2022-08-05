@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:techka/user_screen/profile/profile_components/settings/theme_toggle.dart';
+import 'package:techka/user_screen/profile/profile_components/settings/theme/theme_toggle.dart';
 
 class ThemeTile extends StatelessWidget {
   const ThemeTile({Key? key}) : super(key: key);
@@ -9,8 +9,13 @@ class ThemeTile extends StatelessWidget {
     return ListTile(
       title: const Text('Appearance'),
       subtitle: const Text('Dark theme'),
-      onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context) => const ThemeToggle()));
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const ThemeToggle(),
+          ),
+        );
       },
     );
   }

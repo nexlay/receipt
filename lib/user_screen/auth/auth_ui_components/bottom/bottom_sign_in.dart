@@ -12,12 +12,11 @@ class BottomSignIn extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         const Text("If you're new, try to"),
         TextButton(
           onPressed: () {
-
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => const SignUp(),

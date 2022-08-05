@@ -10,7 +10,8 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: TechkaCustomScrollView(
+      body:
+      ReceiptCustomScrollView(
         title: 'Profile',
         childWidget: SliverList(
           delegate: SliverChildListDelegate(

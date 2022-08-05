@@ -1,4 +1,4 @@
-# techka
+# Receipt
 
 A new Flutter project.
 

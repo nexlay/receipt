@@ -49,7 +49,7 @@ class Storage {
   Future<void> _getReceiptUrl(String? receiptName, String shop, String sum) async {
     String downloadUrl = await firebaseStorage
         .ref('receipts/$uid/$receiptName')
-        .getDownloadURL();
+        .getDownloadURL().timeout(Duration(seconds: 1),);
     await DatabaseService(uid: uid).uploadReceiptDoc(downloadUrl, receiptName!, shop, sum);
   }
 

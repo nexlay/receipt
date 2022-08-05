@@ -7,7 +7,7 @@ class Journal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: TechkaCustomScrollView(title: 'Journal', childWidget: SliverList(
+      body: ReceiptCustomScrollView(title: 'Journal', childWidget: SliverList(
         delegate: SliverChildListDelegate(
           [
           ],

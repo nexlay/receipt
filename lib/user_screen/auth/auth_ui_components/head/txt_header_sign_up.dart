@@ -11,10 +11,10 @@ class TxtHeaderSignUp extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: const [
         Text(
-          "Let's get started",
-
+          "Let's get started!",
+           style: TextStyle(fontSize: 22.0, ),
         ),
-        Text('Create an account',),
+        Text('Create an account.',),
       ],
     );
   }

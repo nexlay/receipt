@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:techka/models/firebase_user.dart';
 
 import '../database/db_service.dart';
 
@@ -6,16 +7,24 @@ import '../database/db_service.dart';
 
 class Auth {
   //An instance of FirebaseAuth
-  final firebaseAuth = FirebaseAuth.instance;
+  final _firebaseAuth = FirebaseAuth.instance;
 
-
-  String? retrieveEmail () {
-    return firebaseAuth.currentUser?.email;
+  FromFirebaseUser _userFromFirebase (User? user) {
+    return FromFirebaseUser(uid: user?.uid);
   }
 
  //stream listening the changes of User's auth
-  Stream<User?> get user{
-    return firebaseAuth.authStateChanges();
+  Stream<FromFirebaseUser> get user{
+    return _firebaseAuth.authStateChanges()
+    .map(_userFromFirebase);
+  }
+
+  String? retrieveEmail () {
+    return _firebaseAuth.currentUser?.email;
+  }
+
+  String? retrieveCurrentUserId () {
+    return _firebaseAuth.currentUser?.uid;
   }
 
   // SignUp Method:
@@ -23,10 +32,14 @@ class Auth {
   // Throwing various Exceptions to handle errors.
   Future signUp({required String email, required String password, required String name, required String surname, required String imageUrl, required int themeValue}) async {
     try {
-      await firebaseAuth.createUserWithEmailAndPassword(
+     UserCredential credential = await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
 
-      await DatabaseService(uid: Auth().firebaseAuth.currentUser?.uid).insertUserData(name, surname, imageUrl, themeValue);
+     User? user = credential.user;
+
+      await DatabaseService(uid: user?.uid).insertUserData(name, surname, imageUrl, themeValue);
+
+      return _userFromFirebase(user);
 
 
     } on FirebaseAuthException catch (e) {
@@ -43,9 +56,12 @@ class Auth {
   //SignIn Method
   Future signIn({required String email, required String password}) async {
     try {
-      await firebaseAuth.signInWithEmailAndPassword(
+      UserCredential credential = await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
 
+      User? user = credential.user;
+
+      return _userFromFirebase(user);
 
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -60,7 +76,7 @@ class Auth {
   //SignOut
   Future<void> signOut() async {
     try {
-      await firebaseAuth.signOut();
+      await _firebaseAuth.signOut();
     } catch (e) {
       throw Exception(e);
     }

@@ -12,7 +12,8 @@ class DatabaseService {
       FirebaseFirestore.instance.collection('users');
 
   //Set user data into Db
-  Future insertUserData(String name, String surname, String imageUrl, int themeValue) async {
+  Future insertUserData(
+      String name, String surname, String imageUrl, int themeValue) async {
     return await usersCollection.doc(uid).set(
       {
         'name': name,
@@ -24,7 +25,8 @@ class DatabaseService {
   }
 
   //Add receipt url into Db
-  Future uploadReceiptDoc(String url, String receiptName, String shop, String sum) async {
+  Future uploadReceiptDoc(
+      String url, String receiptName, String shop, String sum) async {
     return await usersCollection
         .doc(uid)
         .collection('receipts')
@@ -54,30 +56,22 @@ class DatabaseService {
       },
     );
   }
-  //Update theme in database when user choose light or dark
-  Future updateThemeValue(int themeValue) async {
-    return await usersCollection.doc(uid).update(
-      {
-        'themeValue': themeValue,
-      },
-    );
-  }
+
+  //Mapping data from a streams
 
   //User from snapshot
   LocalUser _userFromSnapshot(DocumentSnapshot documentSnapshot) {
     return LocalUser(
-        name: documentSnapshot.data().toString().contains('name')
-            ? documentSnapshot.get('name')
-            : '',
-        surname: documentSnapshot.data().toString().contains('surname')
-            ? documentSnapshot.get('surname')
-            : '',
-        imageUrl: documentSnapshot.data().toString().contains('imageUrl')
-            ? documentSnapshot.get('imageUrl')
-            : '',
-    themeValue: documentSnapshot.data().toString().contains('themeValue')
-        ? documentSnapshot.get('themeValue')
-        : 0);
+      name: documentSnapshot.data().toString().contains('name')
+          ? documentSnapshot.get('name')
+          : '',
+      surname: documentSnapshot.data().toString().contains('surname')
+          ? documentSnapshot.get('surname')
+          : '',
+      imageUrl: documentSnapshot.data().toString().contains('imageUrl')
+          ? documentSnapshot.get('imageUrl')
+          : '',
+    );
   }
 
   //Receipt from snapshot

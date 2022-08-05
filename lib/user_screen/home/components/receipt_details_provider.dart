@@ -13,7 +13,7 @@ final String receiptName;
 
     return StreamProvider<Receipt>.value(
       initialData: Receipt(url: '', name: '', shop: '', sum: ''),
-      value: DatabaseService(uid: Auth().firebaseAuth.currentUser?.uid, receiptName: receiptName).receipt,
+      value: DatabaseService(uid: Auth().retrieveCurrentUserId(), receiptName: receiptName).receipt,
       child: const ReceiptDetails(),
     );
   }

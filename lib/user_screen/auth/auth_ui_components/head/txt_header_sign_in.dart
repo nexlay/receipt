@@ -12,7 +12,7 @@ class TxtHeaderSignIn extends StatelessWidget {
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: const [
-          Text ('Welcome back!',),
+          Text ('Welcome back!', style: TextStyle(fontSize: 22.0, ),),
           Text ('Log in to your existent account.',),
         ],
       );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TechkaProgressIndicator extends StatelessWidget {
-  const TechkaProgressIndicator({Key? key}) : super(key: key);
+class ReceiptProgressIndicator extends StatelessWidget {
+  const ReceiptProgressIndicator({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

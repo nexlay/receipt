@@ -44,7 +44,7 @@ class _AccountState extends State<Account> {
               setState(
                     () {
                   Storage(
-                      uid: Auth().firebaseAuth.currentUser?.uid,
+                      uid: Auth().retrieveCurrentUserId(),
                       imageName: imageFile!.name)
                       .uploadProfileImage(imageFile!.path);
                 },
@@ -62,7 +62,7 @@ class _AccountState extends State<Account> {
           setState(
                 () {
               Storage(
-                  uid: Auth().firebaseAuth.currentUser?.uid,
+                  uid: Auth().retrieveCurrentUserId(),
                   imageName: imageFile!.name)
                   .uploadProfileImage(imageFile!.path);
             },

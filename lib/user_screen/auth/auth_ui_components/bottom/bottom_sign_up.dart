@@ -11,7 +11,7 @@ class BottomSignUp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
             mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const Text('Already have an account?'),
               TextButton(

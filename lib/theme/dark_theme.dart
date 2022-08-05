@@ -23,7 +23,6 @@ class MyDarkTheme {
       ),
       scaffoldBackgroundColor: Colors.black,
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        type: BottomNavigationBarType.shifting,
         backgroundColor: Colors.black,
         elevation: 0.0,
         selectedItemColor: Colors.blue.shade100,
@@ -42,7 +41,7 @@ class MyDarkTheme {
         headline6: GoogleFonts.robotoFlex(
             fontSize: 20, fontWeight: FontWeight.w500, letterSpacing: 0.15),
         subtitle1: GoogleFonts.robotoFlex(
-            fontSize: 20, fontWeight: FontWeight.w400, letterSpacing: 0.15),
+            fontSize: 16, fontWeight: FontWeight.w400, letterSpacing: 0.15),
         subtitle2: GoogleFonts.robotoFlex(
             fontSize: 14, fontWeight: FontWeight.w500, letterSpacing: 0.1),
         bodyText1: GoogleFonts.robotoFlex(
@@ -59,7 +58,7 @@ class MyDarkTheme {
       inputDecorationTheme: InputDecorationTheme(
         iconColor: Colors.blue.shade200,
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.blue.shade50),
+          borderSide: BorderSide(color: Colors.black),
           borderRadius: BorderRadius.circular(38.0),
         ),
         focusedBorder: OutlineInputBorder(

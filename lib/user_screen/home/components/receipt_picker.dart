@@ -14,36 +14,29 @@ class ReceiptPicker extends StatefulWidget {
 }
 
 class _GestureState extends State<ReceiptPicker> {
-
   final MediaService mediaService = MediaService();
   XFile? receiptFile;
   List<String> receiptInfo = [];
 
   @override
   Widget build(BuildContext context) {
-    return receiptFile != null
-        ? const TechkaProgressIndicator()
-        : InkWell(
-      onTap: () async{
-        receiptFile = await mediaService.getImage(ImageSource.gallery);
-        receiptInfo = await mediaService.getRecognisedText();
-        setState(
-              () {
-          Storage(uid: Auth().firebaseAuth.currentUser?.uid, imageName: receiptFile?.name)
-              .uploadReceipt(receiptFile!.path, receiptInfo[0], receiptInfo[1],
-          );
-          },
-        );
-      },
-      child: const EmptyHomeScreen(),
-    );
+    return receiptFile == null ?
+        InkWell(
+            onTap: () async {
+              receiptFile = await mediaService.getImage(ImageSource.gallery);
+              receiptInfo = await mediaService.getRecognisedText();
+                 setState(() {
+                   Storage(
+                       uid: Auth().retrieveCurrentUserId(),
+                       imageName: receiptFile?.name)
+                       .uploadReceipt(
+                     receiptFile!.path,
+                     receiptInfo[0],
+                     receiptInfo[1],
+                   );
+                 });
+            },
+            child: const EmptyHomeScreen(),
+          ) : ReceiptProgressIndicator();
   }
 }
-
-
-
-
-
-
-
-

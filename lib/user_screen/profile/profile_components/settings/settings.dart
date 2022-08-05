@@ -8,7 +8,7 @@ class MySettings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: TechkaCustomScrollView(
+      body: ReceiptCustomScrollView(
         title: 'Settings',
         childWidget: SliverList(
           delegate: SliverChildListDelegate(

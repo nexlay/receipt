@@ -14,7 +14,6 @@ class MyTheme {
       ),
       scaffoldBackgroundColor: Colors.white,
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        type: BottomNavigationBarType.shifting,
         backgroundColor: Colors.white,
         unselectedItemColor: Colors.grey.shade300,
         elevation: 0.0,
@@ -45,7 +44,7 @@ class MyTheme {
         headline6: GoogleFonts.robotoFlex(
             fontSize: 20, fontWeight: FontWeight.w500, letterSpacing: 0.15),
         subtitle1: GoogleFonts.robotoFlex(
-            fontSize: 20, fontWeight: FontWeight.w400, letterSpacing: 0.15),
+            fontSize: 16, fontWeight: FontWeight.w400, letterSpacing: 0.15),
         subtitle2: GoogleFonts.robotoFlex(
             fontSize: 14, fontWeight: FontWeight.w500, letterSpacing: 0.1),
         bodyText1: GoogleFonts.robotoFlex(
