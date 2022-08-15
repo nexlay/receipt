@@ -18,6 +18,7 @@ class _ReceiptDetailsState extends State<ReceiptDetails> {
     final receipt = Provider.of<Receipt>(context);
     return Scaffold(
       appBar: AppBar(
+        title: Text(receipt.date),
         actions: [
           IconButton(
             onPressed: () async {
@@ -27,7 +28,9 @@ class _ReceiptDetailsState extends State<ReceiptDetails> {
             icon: const Icon(Icons.delete),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              //TODO Share user receipt
+            },
             icon: const Icon(Icons.share),
           ),
         ],

@@ -1,47 +1,49 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:techka/models/firebase_user.dart';
-
 import '../database/db_service.dart';
-
-
 
 class Auth {
   //An instance of FirebaseAuth
   final _firebaseAuth = FirebaseAuth.instance;
 
-  FromFirebaseUser _userFromFirebase (User? user) {
+  //Create local FromFirebaseUser with id
+  FromFirebaseUser _userFromFirebase(User? user) {
     return FromFirebaseUser(uid: user?.uid);
   }
 
- //stream listening the changes of User's auth
-  Stream<FromFirebaseUser> get user{
-    return _firebaseAuth.authStateChanges()
-    .map(_userFromFirebase);
+  //Stream listening the changes of User's auth
+  Stream<FromFirebaseUser> get user {
+    return _firebaseAuth.authStateChanges().map(_userFromFirebase);
   }
-
-  String? retrieveEmail () {
+  //Retrieve user email
+  String? retrieveEmail() {
     return _firebaseAuth.currentUser?.email;
   }
-
-  String? retrieveCurrentUserId () {
+   //Retrieve user id
+  String? retrieveCurrentUserId() {
     return _firebaseAuth.currentUser?.uid;
   }
 
   // SignUp Method:
   // We send the email and password to the createUserWithEmailAndPassword() function.
   // Throwing various Exceptions to handle errors.
-  Future signUp({required String email, required String password, required String name, required String surname, required String imageUrl, required int themeValue}) async {
+  Future signUp(
+      {required String email,
+      required String password,
+      required String name,
+      required String surname,
+      required String imageUrl,
+      required int themeValue}) async {
     try {
-     UserCredential credential = await _firebaseAuth.createUserWithEmailAndPassword(
-          email: email, password: password);
+      UserCredential credential = await _firebaseAuth
+          .createUserWithEmailAndPassword(email: email, password: password);
 
-     User? user = credential.user;
+      User? user = credential.user;
 
-      await DatabaseService(uid: user?.uid).insertUserData(name, surname, imageUrl, themeValue);
+      await DatabaseService(uid: user?.uid)
+          .insertUserData(name, surname, imageUrl, themeValue);
 
       return _userFromFirebase(user);
-
-
     } on FirebaseAuthException catch (e) {
       if (e.code == 'week password') {
         throw Exception('The password is too week.');
@@ -56,13 +58,11 @@ class Auth {
   //SignIn Method
   Future signIn({required String email, required String password}) async {
     try {
-      UserCredential credential = await _firebaseAuth.signInWithEmailAndPassword(
-          email: email, password: password);
+      UserCredential credential = await _firebaseAuth
+          .signInWithEmailAndPassword(email: email, password: password);
 
       User? user = credential.user;
-
       return _userFromFirebase(user);
-
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         throw Exception('No user found for that email.');
@@ -71,7 +71,6 @@ class Auth {
       }
     }
   }
-
 
   //SignOut
   Future<void> signOut() async {

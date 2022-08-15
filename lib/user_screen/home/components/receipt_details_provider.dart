@@ -12,7 +12,7 @@ final String receiptName;
   Widget build(BuildContext context) {
 
     return StreamProvider<Receipt>.value(
-      initialData: Receipt(url: '', name: '', shop: '', sum: ''),
+      initialData: Receipt(url: '', name: '', shop: '', sum: '', date: ''),
       value: DatabaseService(uid: Auth().retrieveCurrentUserId(), receiptName: receiptName).receipt,
       child: const ReceiptDetails(),
     );

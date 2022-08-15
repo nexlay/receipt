@@ -33,6 +33,7 @@ class _GestureState extends State<ReceiptPicker> {
                      receiptFile!.path,
                      receiptInfo[0],
                      receiptInfo[1],
+                     receiptInfo[2],
                    );
                  });
             },

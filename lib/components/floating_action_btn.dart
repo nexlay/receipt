@@ -23,7 +23,10 @@ class _MyFloatingActionBtnState extends State<MyFloatingActionBtn> {
       onPressed: () {
         showModalBottomSheet(
           shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(topRight: Radius.circular(16.0), topLeft: Radius.circular(16.0),),
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(16.0),
+              topLeft: Radius.circular(16.0),
+            ),
           ),
           context: context,
           builder: (_) {
@@ -38,17 +41,20 @@ class _MyFloatingActionBtnState extends State<MyFloatingActionBtn> {
                       receiptFile =
                           await mediaService.getImage(ImageSource.gallery);
                       receiptInfo = await mediaService.getRecognisedText();
-            if(receiptFile != null) {
-              setState(
-                    () {
-                  Storage(
-                      uid: Auth().retrieveCurrentUserId(),
-                      imageName: receiptFile?.name)
-                      .uploadReceipt(receiptFile!.path, receiptInfo[0],
-                      receiptInfo[1]);
-                },
-              );
-            }
+                      if (receiptFile != null) {
+                        setState(
+                          () {
+                            Storage(
+                                    uid: Auth().retrieveCurrentUserId(),
+                                    imageName: receiptFile?.name)
+                                .uploadReceipt(
+                                    receiptFile!.path,
+                                    receiptInfo[0],
+                                    receiptInfo[1],
+                                    receiptInfo[2]);
+                          },
+                        );
+                      }
                       Navigator.of(context).pop(ConfirmAction.Upload);
                     },
                     icon: const Icon(
@@ -61,15 +67,18 @@ class _MyFloatingActionBtnState extends State<MyFloatingActionBtn> {
                       receiptFile =
                           await mediaService.getImage(ImageSource.camera);
                       receiptInfo = await mediaService.getRecognisedText();
-                      if(receiptFile != null) {
+                      if (receiptFile != null) {
                         setState(
-                              () {
+                          () {
                             Storage(
-                                uid: Auth().retrieveCurrentUserId(),
-                                imageName: receiptFile?.name)
+                                    uid: Auth().retrieveCurrentUserId(),
+                                    imageName: receiptFile?.name)
                                 .uploadReceipt(
-                                receiptFile!.path, receiptInfo[0],
-                                receiptInfo[1]);
+                              receiptFile!.path,
+                              receiptInfo[0],
+                              receiptInfo[1],
+                              receiptInfo[2],
+                            );
                           },
                         );
                       }

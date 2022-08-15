@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:techka/models/nav_bar_items.dart';
 
-
-
 class StartPage extends StatefulWidget {
   const StartPage({
     Key? key,
@@ -13,7 +11,7 @@ class StartPage extends StatefulWidget {
 }
 
 class _StartPageState extends State<StartPage> {
-  NavBarItem navBarItem = NavBarItem();
+  final NavBarItem _navBarItem = NavBarItem();
 
   int _selectedIndex = 0;
 
@@ -49,7 +47,9 @@ class _StartPageState extends State<StartPage> {
         //selectedItemColor: Colors.amber[800],
         onTap: _onItemTapped,
       ),
-      body: Center(child: navBarItem.getWidget(_selectedIndex),),
+      body: Center(
+        child: _navBarItem.getWidget(_selectedIndex),
+      ),
     );
   }
 }

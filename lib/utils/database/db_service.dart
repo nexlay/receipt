@@ -25,8 +25,8 @@ class DatabaseService {
   }
 
   //Add receipt url into Db
-  Future uploadReceiptDoc(
-      String url, String receiptName, String shop, String sum) async {
+  Future uploadReceiptDoc(String url, String receiptName, String shop,
+      String sum, String receiptDate) async {
     return await usersCollection
         .doc(uid)
         .collection('receipts')
@@ -36,6 +36,7 @@ class DatabaseService {
       'name': receiptName,
       'shop': shop,
       'sum': sum,
+      'date': receiptDate,
     });
   }
 
@@ -88,6 +89,9 @@ class DatabaseService {
             : '',
         sum: snapshot.data().toString().contains('sum')
             ? snapshot.get('sum')
+            : '',
+        date: snapshot.data().toString().contains('date')
+            ? snapshot.get('date')
             : '');
   }
 
@@ -98,7 +102,8 @@ class DatabaseService {
           url: doc.data().toString().contains('url') ? doc.get('url') : '',
           name: doc.data().toString().contains('name') ? doc.get('name') : '',
           shop: doc.data().toString().contains('shop') ? doc.get('shop') : '',
-          sum: doc.data().toString().contains('sum') ? doc.get('sum') : '');
+          sum: doc.data().toString().contains('sum') ? doc.get('sum') : '',
+          date: doc.data().toString().contains('date') ? doc.get('date') : '');
     }).toList();
   }
 

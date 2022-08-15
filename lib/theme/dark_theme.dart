@@ -9,6 +9,7 @@ class MyDarkTheme {
         brightness: Brightness.dark,
       ),
       useMaterial3: true,
+      cardTheme: CardTheme(color: Colors.black),
       iconTheme: IconThemeData(
         color: Colors.blue.shade300,
       ),

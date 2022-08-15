@@ -4,8 +4,6 @@ import 'package:techka/models/firebase_user.dart';
 import 'package:techka/wrappers/nav_bar.dart';
 import '../user_screen/auth/sign_in.dart';
 
-
-
 class Wrapper extends StatelessWidget {
   const Wrapper({
     Key? key,
