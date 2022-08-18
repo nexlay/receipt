@@ -8,7 +8,7 @@ import 'package:techka/theme/light_theme.dart';
 import 'package:techka/utils/authentication/authentication.dart';
 import 'package:techka/utils/database/db_service.dart';
 import 'package:techka/wrappers/wrapper.dart';
-import 'models/local_user.dart';
+import 'features/authentication/domain/entities/local_user.dart';
 import 'models/receipt.dart';
 
 Future<void> main() async {

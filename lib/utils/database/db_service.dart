@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:techka/models/receipt.dart';
-import 'package:techka/models/local_user.dart';
+import 'package:techka/features/authentication/domain/entities/local_user.dart';
 
 class DatabaseService {
   final String? uid;
@@ -10,6 +10,8 @@ class DatabaseService {
   //Db reference
   final CollectionReference usersCollection =
       FirebaseFirestore.instance.collection('users');
+
+
 
   //Set user data into Db
   Future insertUserData(
@@ -72,6 +74,9 @@ class DatabaseService {
       imageUrl: documentSnapshot.data().toString().contains('imageUrl')
           ? documentSnapshot.get('imageUrl')
           : '',
+         id: '',
+         password: '',
+         email: '',
     );
   }
 
@@ -125,6 +130,8 @@ class DatabaseService {
 
 //Get receipt stream
   Stream<Receipt> get receipt {
+    final receiptId = usersCollection.doc().id;
+    print('RECEIPT ID IS $receiptId');
     return usersCollection
         .doc(uid)
         .collection('receipts')

@@ -3,7 +3,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:techka/utils/database/storage.dart';
 import '../../../components/custom_sliver_header.dart';
-import '../../../models/local_user.dart';
+import '../../../features/authentication/domain/entities/local_user.dart';
 import '../../../services/media.dart';
 import '../../../utils/authentication/authentication.dart';
 
