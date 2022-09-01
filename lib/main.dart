@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:techka/models/firebase_user.dart';
 import 'package:techka/models/user_theme_provider.dart';
+import 'package:techka/src/features/authentication/domain/entities/local_user_entities.dart';
 import 'package:techka/theme/dark_theme.dart';
 import 'package:techka/theme/light_theme.dart';
 import 'package:techka/utils/authentication/authentication.dart';
 import 'package:techka/utils/database/db_service.dart';
 import 'package:techka/wrappers/wrapper.dart';
-import 'features/authentication/domain/entities/local_user.dart';
+
 import 'models/receipt.dart';
 
 Future<void> main() async {

@@ -1,7 +1,10 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:techka/models/receipt.dart';
-import 'package:techka/features/authentication/domain/entities/local_user.dart';
+
+import '../../src/features/authentication/domain/entities/local_user_entities.dart';
+
+
 
 class DatabaseService {
   final String? uid;

@@ -62,6 +62,7 @@ class Auth {
           .signInWithEmailAndPassword(email: email, password: password);
 
       User? user = credential.user;
+
       return _userFromFirebase(user);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
