@@ -1,6 +1,5 @@
 # Receipt
-> Outline a brief description of your project.
-> Live demo [_here_](https://www.example.com). <!-- If you have the project hosted somewhere, include the link here. -->
+
 
 ## Table of Contents
 * [General Info](#general-information)
@@ -17,29 +16,32 @@
 
 
 ## General Information
-- Provide general information about your project here.
-- What problem does it (intend to) solve?
-- What is the purpose of your project?
-- Why did you undertake it?
-<!-- You don't have to answer all the questions - just the ones relevant to your project. -->
+- Storage at home can be a challenge. Receipt will help you keep track of all your sale receipts in one place.
+
 
 
 ## Technologies Used
-- Tech 1 - version 1.0
-- Tech 2 - version 2.0
-- Tech 3 - version 3.0
+- Flutter.
+- Dart.
+- Provider for state management.
+- Firebases storage.
+- Firebase auth.
+- Google ML Kit for text recognition.
+- Implicit flutter animation.
 
 
 ## Features
 List the ready features here:
-- Awesome feature 1
-- Awesome feature 2
-- Awesome feature 3
+- Authentication.
+- Load into Firebase sale receipts from your device local storage.
+- Delete from Firebase sale receipts.
+- Add your profile information (profile image, name, surname, email).
+- Dark/Light/Auto theme.
+
 
 
 ## Screenshots
 ![Example screenshot](./img/screenshot.png)
-<!-- If you have screenshots you'd like to share, include them here. -->
 
 
 ## Setup
@@ -56,19 +58,16 @@ Provide various use cases and code examples here.
 
 
 ## Project Status
-Project is: _in progress_ / _complete_ / _no longer being worked on_. If you are no longer working on it, provide reasons why.
+Project is: _in progress_.
 
 
 ## Room for Improvement
-Include areas you believe need improvement / could be improved. Also add TODOs for future development.
-
-Room for improvement:
-- Improvement to be done 1
-- Improvement to be done 2
+- Improvement to be done: project architecture.
 
 To do:
-- Feature to be added 1
-- Feature to be added 2
+- Feature to be added: 
+Journal - place where user can see history of all added receipts.
+Your info - for editing personal information.
 
 
 ## Acknowledgements
