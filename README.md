@@ -46,14 +46,14 @@ List the ready features here:
 
 
 ## Setup
-What are the project requirements/dependencies? Where are they listed? A requirements.txt or a Pipfile.lock file perhaps? Where is it located?
-
-Proceed to describe how to install / setup one's local environment / get started with the project.
+- Click on the green-colored Code button then copy the hyperlink. You may copy the link manually or by just click on the Copy icon. 
+- Open your Android Studio then go to the File > New > Project from Version Control.
+- In the Version control choose Git from the drop-down menu. 
+- Then at last paste the link in the URL and choose your Directory. Click on the Clone button and you are done.
 
 
 ## Usage
-How does one go about using it?
-Provide various use cases and code examples here.
+
 
 `write-your-code-here`
 
@@ -72,14 +72,11 @@ Your info - for editing personal information.
 
 
 ## Acknowledgements
-Give credit here.
-- This project was inspired by...
-- This project was based on [this tutorial](https://www.example.com).
-- Many thanks to...
+- This project was based on [this tutorial](https://www.youtube.com/playlist?list=PL4cUxeGkcC9j--TKIdkb3ISfRbJeJYQwC).
 
 
 ## Contact
-Created by [@flynerdpl](https://www.flynerd.pl/) - feel free to contact me!
+Created by [@Nexlay](https://twitter.com/Nexlay/) - feel free to contact me!
 
 
 <!-- Optional -->
