@@ -23,6 +23,7 @@
 ## Technologies Used
 - Flutter.
 - Dart.
+- Provider for state management.
 - Firebases storage.
 - Firebase auth.
 - Google ML Kit for text recognition.
@@ -58,19 +59,16 @@ Provide various use cases and code examples here.
 
 
 ## Project Status
-Project is: _in progress_ / _complete_ / _no longer being worked on_. If you are no longer working on it, provide reasons why.
+Project is: _in progress_.
 
 
 ## Room for Improvement
-Include areas you believe need improvement / could be improved. Also add TODOs for future development.
-
-Room for improvement:
-- Improvement to be done 1
-- Improvement to be done 2
+- Improvement to be done: project architecture.
 
 To do:
-- Feature to be added 1
-- Feature to be added 2
+- Feature to be added: 
+Journal - place where user can see history of all added receipts.
+Your info - for editing personal information.
 
 
 ## Acknowledgements
