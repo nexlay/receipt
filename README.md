@@ -1,6 +1,5 @@
 # Receipt
-> Outline a brief description of your project.
-> Live demo [_here_](https://www.example.com). <!-- If you have the project hosted somewhere, include the link here. -->
+
 
 ## Table of Contents
 * [General Info](#general-information)
@@ -17,24 +16,27 @@
 
 
 ## General Information
-- Provide general information about your project here.
-- What problem does it (intend to) solve?
-- What is the purpose of your project?
-- Why did you undertake it?
-<!-- You don't have to answer all the questions - just the ones relevant to your project. -->
+- Storage at home can be a challenge. Receipt will help you keep track of all your sale receipts in one place.
+
 
 
 ## Technologies Used
-- Tech 1 - version 1.0
-- Tech 2 - version 2.0
-- Tech 3 - version 3.0
+- Flutter.
+- Dart.
+- Firebases storage.
+- Firebase auth.
+- Google ML Kit for text recognition.
+- Implicit flutter animation.
 
 
 ## Features
 List the ready features here:
-- Awesome feature 1
-- Awesome feature 2
-- Awesome feature 3
+- Authentication.
+- Load into Firebase sale receipts from your device local storage.
+- Delete from Firebase sale receipts.
+- Add your profile information (profile image, name, surname, email).
+- Dark/Light/Auto theme.
+
 
 
 ## Screenshots
