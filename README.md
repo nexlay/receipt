@@ -41,8 +41,8 @@ List the ready features here:
 
 
 ## Screenshots
-<img src="git_images/Screenshot_0.png" width="300" height="620"/> <img src="git_images/Screenshot_1.png" width="300" height="650"/>
-<img src="git_images/Screenshot_2.png" width="300" height="650"/> <img src="git_images/Screenshot_3.png" width="300" height="650"/>
+<img src="git_images/Screenshot_0.png" width="300" height="620"/> <img src="git_images/Screenshot_1.png" width="300" height="620"/>
+<img src="git_images/Screenshot_2.png" width="300" height="620"/> <img src="git_images/Screenshot_3.png" width="300" height="620"/>
 
 
 ## Setup
