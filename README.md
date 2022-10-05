@@ -1,7 +1,7 @@
 # Receipt
 
-<details>
-  <summary>Table of Contents</summary>
+
+# Table of Contents
 * [General Info](#general-information)
 * [Technologies Used](#technologies-used)
 * [Features](#features)
@@ -13,7 +13,7 @@
 * [Acknowledgements](#acknowledgements)
 * [Contact](#contact)
 <!-- * [License](#license) -->
-</details>
+
 
 
 ## General Information
