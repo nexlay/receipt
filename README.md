@@ -1,7 +1,7 @@
 # Receipt
 
 <details>
-  <summary>## Table of Contents</summary>
+  <summary>Table of Contents</summary>
 * [General Info](#general-information)
 * [Technologies Used](#technologies-used)
 * [Features](#features)
